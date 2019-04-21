@@ -1,8 +1,8 @@
-package com.springboot.demo.Controller;
+package com.springboot.demo.controller;
 
 
-import com.springboot.demo.Bean.BlogProperties;
-import com.springboot.demo.Bean.TestConfigBean;
+import com.springboot.demo.bean.BlogProperties;
+import com.springboot.demo.bean.TestConfigBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +18,7 @@ public class indexController {
 
     @RequestMapping("/")
     String index(){
+       // return blogProperties.getName()+"---"+blogProperties.getTitle();
         return testConfigBean.getName()+"---"+testConfigBean.getAge();
     }
 

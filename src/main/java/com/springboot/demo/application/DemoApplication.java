@@ -1,15 +1,13 @@
-package com.springboot.demo;
+package com.springboot.demo.application;
 
-import com.springboot.demo.Bean.TestConfigBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 
 @SpringBootApplication
-@EnableConfigurationProperties({TestConfigBean.class})
+//@EnableConfigurationProperties({TestConfigBean.class})
+@MapperScan("com.springboot.demo.dao")
 public class DemoApplication {
 
 //    @RequestMapping("/")

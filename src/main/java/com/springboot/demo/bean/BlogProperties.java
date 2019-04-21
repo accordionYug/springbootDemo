@@ -1,4 +1,4 @@
-package com.springboot.demo.Bean;
+package com.springboot.demo.bean;
 
 
 import org.springframework.beans.factory.annotation.Value;
