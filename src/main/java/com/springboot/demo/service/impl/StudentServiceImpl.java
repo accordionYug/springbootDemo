@@ -6,6 +6,8 @@ import com.springboot.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("studentService")
 public class StudentServiceImpl implements StudentService {
 
@@ -30,5 +32,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student queryById(Integer id) {
         return studentMapper.queryById(id);
+    }
+
+    @Override
+    public List<Student> getAllStudent() {
+        return studentMapper.getAllStudent();
     }
 }
