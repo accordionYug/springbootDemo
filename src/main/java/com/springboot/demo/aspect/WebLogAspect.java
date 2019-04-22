@@ -2,10 +2,7 @@ package com.springboot.demo.aspect;
 
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -42,6 +39,11 @@ public class WebLogAspect {
             String name = (String) enu.nextElement();
             logger.info("name:{},value:{}",name, request.getParameter(name));
         }
+    }
+
+    @After("webLog()")
+    public void doAfter(JoinPoint joinPoint){
+        logger.info("=====该动作处理完毕=====");
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")

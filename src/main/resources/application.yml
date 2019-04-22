@@ -13,6 +13,11 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       # 连接池配置
@@ -62,3 +67,16 @@ spring:
         stat:
           log-slow-sql: true
 
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+    password:
+
+      #  mvc:
+      #    view:
+      #      prefix: /
+      #      suffix: .html
+    #resources:
+    #  static-locations: classpath:/resources/, classpath:/static/ classpath:/templates/
