@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@EnableCaching
 @MapperScan("com.springboot.demo.dao")
 public class DemoApplication {
 

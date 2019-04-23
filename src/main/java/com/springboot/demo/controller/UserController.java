@@ -1,37 +1,77 @@
 package com.springboot.demo.controller;
 
-import com.springboot.demo.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.demo.model.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
-@RestController
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Api(value = "用户Contorller")
+@Controller
+@RequestMapping("user")
 public class UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
-
-    private final UserRepository userRepository;
-
-    @Autowired
-    public UserController(UserRepository userRepository){
-        this.userRepository=userRepository;
+    @ApiIgnore
+    @GetMapping("hello")
+    public @ResponseBody String hello(){
+        return "hello";
     }
 
-    //使用@Cacheable注解 将数据库查询出来的值放入缓存中
-    @Cacheable(value = "users",key = "#userId", unless = "#result.money<10000")
-    @RequestMapping(value = "/user/{userId}",method = RequestMethod.GET)
-    public Object getUser(@PathVariable Long userId){
-        logger.info("获取user信息根据ID->{}",userId);
-        return userRepository.findById(userId);
+    @ApiOperation(value = "获取用户信息", notes = "根据用户id获取用户信息")
+    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path")
+    @GetMapping("/{id}")
+    public @ResponseBody User getUserById(@PathVariable(value = "id") Long id){
+        User user = new User();
+        user.setId(id);
+        user.setName("accordionYug");
+        user.setMoney(11112);
+        return user;
     }
 
-    //使用@CachePut注解 数据库值更新时  缓存也更新
+    @ApiOperation(value = "获取用户列表", notes = "获取用户列表")
+    @GetMapping("/list")
+    public @ResponseBody List<User> getUserList(){
+        List<User> list = new ArrayList<>();
+        User user1 = new User();
+        user1.setId(1l);
+        user1.setName("accordionYug1");
+        user1.setMoney(111);
+        list.add(user1);
+        User user2 = new User();
+        user2.setId(2l);
+        user2.setName("accordionYug2");
+        user2.setMoney(111111);
+        list.add(user2);
+        return list;
+    }
 
-    //使用@CacheEvict注解 数据库值删除时 缓存中也删除
+    @ApiOperation(value = "删除用户", notes = "根据用户id删除用户")
+    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path")
+    @DeleteMapping("/{id}")
+    public @ResponseBody Map<String, Object> deleteUser(@PathVariable(value = "id") Long id){
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", "success");
+        return map;
+    }
+
+    @ApiOperation(value = "更新用户", notes = "根据用户id更新用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path"),
+            @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User") })
+    @PutMapping("/{id}")
+    public @ResponseBody Map<String,Object> updateUser(@PathVariable(value = "id")Long id, @RequestBody User user){
+        Map<String ,Object> map = new HashMap<>();
+        map.put("result","success");
+        return map;
+    }
+
 }
