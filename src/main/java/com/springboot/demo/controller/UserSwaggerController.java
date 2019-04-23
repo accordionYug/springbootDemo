@@ -17,8 +17,8 @@ import java.util.Map;
 
 @Api(value = "用户Contorller")
 @Controller
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("userSwagger")
+public class UserSwaggerController {
 
     @ApiIgnore
     @GetMapping("hello")
