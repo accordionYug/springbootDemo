@@ -29,15 +29,17 @@ public class RedisCacheApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception{
-        logger.info("开始初始化user->user count->{}",userRepository.count());
-        User james = new User("James",2000);
-        User potter = new User("Potter",4000);
-        User dumbledor = new User("Dumbledore", 999999);
+//        logger.info("开始初始化user->user count->{}",userRepository.count());
+//        User james = new User("James",2000);
+//        User potter = new User("Potter",4000);
+//        User dumbledor = new User("Dumbledore", 999999);
+//
+//        userRepository.save(james);
+//        userRepository.save(potter);
+//        userRepository.save(dumbledor);
+//
+//        logger.info("初始化完成 数据->{}",userRepository.findAll());
 
-        userRepository.save(james);
-        userRepository.save(potter);
-        userRepository.save(dumbledor);
-
-        logger.info("初始化完成 数据->{}",userRepository.findAll());
+        logger.info("初始化完成");
     }
 }

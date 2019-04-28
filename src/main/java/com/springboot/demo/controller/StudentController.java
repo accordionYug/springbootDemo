@@ -3,7 +3,6 @@ package com.springboot.demo.controller;
 
 import com.springboot.demo.model.Student;
 import com.springboot.demo.service.StudentService;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
